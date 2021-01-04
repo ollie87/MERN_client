@@ -5,7 +5,8 @@ const Login = () => {
   const [usuario, guardarUsuario] = useState({ email: '', password: '' });
   const { email, password } = usuario;
   const onChange = e => {
-    guardarUsuario(...usuario, { [e.target.name]: e.target.value });
+    console.log(e);
+    guardarUsuario({ ...usuario, [e.target.name]: e.target.value });
   };
   const onSubmit = e => {
     e.preventDefault();

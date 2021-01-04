@@ -5,7 +5,7 @@ const NuevaCuenta = () => {
   const [usuario, guardarUsuario] = useState({ email: '', password: '', nombre: '', confirmar: '' });
   const { nombre, email, password, confirmar } = usuario;
   const onChange = e => {
-    guardarUsuario(...usuario, { [e.target.name]: e.target.value });
+    guardarUsuario({ ...usuario, [e.target.name]: e.target.value });
   };
   const onSubmit = e => {
     e.preventDefault();
