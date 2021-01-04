@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 const Login = () => {
   const [usuario, guardarUsuario] = useState({ email: '', password: '' });
   const { email, password } = usuario;
@@ -32,6 +34,9 @@ const Login = () => {
             <input type="submit" className="btn btn-primario btn-block" value="Iniciar Sesión" />
           </div>
         </form>
+        <Link to={'/nueva-cuenta'} className="enlace-cuenta">
+          Obtener Cuenta
+        </Link>
       </div>
     </div>
   );
