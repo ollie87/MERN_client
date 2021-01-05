@@ -5,6 +5,11 @@ import proyectoReducer from './proyectoReducer';
 
 const ProyectoState = props => {
   const initialState = {
+    proyectos: [
+      { id: 1, nombre: 'Tienda Virtual' },
+      { id: 2, nombre: 'Intranet' },
+      { id: 3, nombre: 'Diseño sitio web' },
+    ],
     formulario: false,
   };
 
@@ -17,7 +22,7 @@ const ProyectoState = props => {
   };
 
   return (
-    <proyectoContext.Provider value={{ formulario: state.formulario, mostrarFormulario }}>
+    <proyectoContext.Provider value={{ proyectos: state.proyectos, formulario: state.formulario, mostrarFormulario }}>
       {props.children}
     </proyectoContext.Provider>
   );
