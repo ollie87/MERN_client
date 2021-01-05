@@ -2,6 +2,7 @@ import React from 'react';
 import HeaderNav from '../layout/HeaderNav';
 import Sidebar from '../layout/Sidebar';
 import FormTarea from '../tareas/FormTarea';
+import ListadoTareas from '../tareas/ListadoTareas';
 const Proyectos = () => {
   return (
     <div className="contenedor-app">
@@ -10,7 +11,9 @@ const Proyectos = () => {
         <HeaderNav />
         <main>
           <FormTarea />
-          <div className="contenedor-tareas"></div>
+          <div className="contenedor-tareas">
+            <ListadoTareas />
+          </div>
         </main>
       </div>
     </div>
