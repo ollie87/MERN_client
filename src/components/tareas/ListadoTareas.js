@@ -3,10 +3,10 @@ import Tarea from './Tarea';
 
 const ListadoTareas = () => {
   const tareasProyecto = [
-    { nombre: 'Elegir Plataforma', estado: true },
-    { nombre: 'Elegir Colores', estado: false },
-    { nombre: 'Elegir Plataformas de pago', estado: false },
-    { nombre: 'Elegir Hosting', estado: true },
+    { id: 1, nombre: 'Elegir Plataforma', estado: true },
+    { id: 2, nombre: 'Elegir Colores', estado: false },
+    { id: 3, nombre: 'Elegir Plataformas de pago', estado: false },
+    { id: 4, nombre: 'Elegir Hosting', estado: true },
   ];
   return (
     <Fragment>
@@ -18,7 +18,7 @@ const ListadoTareas = () => {
             <p>No hay tareas</p>
           </li>
         ) : (
-          tareasProyecto.map(tarea => <Tarea tarea={tarea} />)
+          tareasProyecto.map(tarea => <Tarea tarea={tarea} key={tarea.id} />)
         )}
       </ul>
       <button type="button" className="btn btn-eliminar">
