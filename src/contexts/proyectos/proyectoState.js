@@ -1,5 +1,5 @@
 import React, { useCallback, useReducer } from 'react';
-import { AGREGAR_PROYECTO, FORMULARIO_PROYECTO, OBTENER_PROYECTOS } from '../../types';
+import { AGREGAR_PROYECTO, FORMULARIO_PROYECTO, OBTENER_PROYECTOS, VALIDAR_FORMULARIO } from '../../types';
 import proyectoContext from './proyectoContext';
 import proyectoReducer from './proyectoReducer';
 import { v4 as uuidv4 } from 'uuid';
@@ -12,6 +12,7 @@ const ProyectoState = props => {
   const initialState = {
     proyectos: [],
     formulario: false,
+    errorformulario: false,
   };
 
   const [state, dispatch] = useReducer(proyectoReducer, initialState);
@@ -35,14 +36,20 @@ const ProyectoState = props => {
     });
   };
 
+  const mostrarError = () => {
+    dispatch({ type: VALIDAR_FORMULARIO });
+  };
+
   return (
     <proyectoContext.Provider
       value={{
         proyectos: state.proyectos,
         formulario: state.formulario,
+        errorformulario: state.errorformulario,
         mostrarFormulario,
         obtenerProyectos,
         agregarProyecto,
+        mostrarError,
       }}
     >
       {props.children}

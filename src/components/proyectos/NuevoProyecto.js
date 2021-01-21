@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useState } from 'react';
 import proyectoContext from '../../contexts/proyectos/proyectoContext';
 const NuevoProyecto = () => {
   const proyectosContext = useContext(proyectoContext);
-  const { formulario, mostrarFormulario, agregarProyecto } = proyectosContext;
+  const { formulario, errorformulario, mostrarFormulario, agregarProyecto, mostrarError } = proyectosContext;
   const [proyecto, guardarProyecto] = useState({ nombre: '' });
 
   const { nombre } = proyecto;
@@ -14,6 +14,7 @@ const NuevoProyecto = () => {
   const onSubmitProyecto = e => {
     e.preventDefault();
     if (nombre === '') {
+      mostrarError();
       return;
     }
 
@@ -40,6 +41,8 @@ const NuevoProyecto = () => {
           <input type="submit" className="btn btn-primario btn-block" value="Agregar Proyecto" />
         </form>
       ) : null}
+
+      {errorformulario ? <p className="mensaje error">El nombre del proyecto es obligatorio</p> : null}
     </Fragment>
   );
 };
