@@ -1,9 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import proyectoContext from '../../contexts/proyectos/proyectoContext';
 import Proyecto from './Proyecto';
 const ListadoProyectos = () => {
   const proyectosContext = useContext(proyectoContext);
-  const { proyectos } = proyectosContext;
+  const { proyectos, obtenerProyectos } = proyectosContext;
+
+  useEffect(() => {
+    obtenerProyectos();
+  }, [obtenerProyectos]);
 
   if (proyectos.length === 0) return null;
 
