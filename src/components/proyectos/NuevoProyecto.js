@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useState } from 'react';
 import proyectoContext from '../../contexts/proyectos/proyectoContext';
 const NuevoProyecto = () => {
   const proyectosContext = useContext(proyectoContext);
-  const { formulario, mostrarFormulario } = proyectosContext;
+  const { formulario, mostrarFormulario, agregarProyecto } = proyectosContext;
   const [proyecto, guardarProyecto] = useState({ nombre: '' });
 
   const { nombre } = proyecto;
@@ -13,6 +13,13 @@ const NuevoProyecto = () => {
 
   const onSubmitProyecto = e => {
     e.preventDefault();
+    if (nombre === '') {
+      return;
+    }
+
+    agregarProyecto(proyecto);
+
+    guardarProyecto({ nombre: '' });
   };
 
   return (
