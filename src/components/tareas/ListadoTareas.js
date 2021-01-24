@@ -9,12 +9,7 @@ const ListadoTareas = () => {
   if (!proyecto) return <h2>Selecctiona un Proyecto</h2>;
 
   const [proyectoActual] = proyecto;
-  const tareasProyecto = [
-    { id: 1, nombre: 'Elegir Plataforma', estado: true },
-    { id: 2, nombre: 'Elegir Colores', estado: false },
-    { id: 3, nombre: 'Elegir Plataformas de pago', estado: false },
-    { id: 4, nombre: 'Elegir Hosting', estado: true },
-  ];
+  const tareasProyecto = [];
   const onClickEliminar = () => {
     eliminarProyecto(proyectoActual.id);
   };
