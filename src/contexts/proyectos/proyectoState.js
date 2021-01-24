@@ -1,6 +1,7 @@
 import React, { useCallback, useReducer } from 'react';
 import {
   AGREGAR_PROYECTO,
+  ELIMINAR_PROYECTO,
   FORMULARIO_PROYECTO,
   OBTENER_PROYECTOS,
   PROYECTO_ACTUAL,
@@ -54,6 +55,13 @@ const ProyectoState = props => {
     });
   };
 
+  const eliminarProyecto = proyectoId => {
+    dispatch({
+      type: ELIMINAR_PROYECTO,
+      payload: proyectoId,
+    });
+  };
+
   return (
     <proyectoContext.Provider
       value={{
@@ -66,6 +74,7 @@ const ProyectoState = props => {
         agregarProyecto,
         mostrarError,
         proyectoActual,
+        eliminarProyecto,
       }}
     >
       {props.children}

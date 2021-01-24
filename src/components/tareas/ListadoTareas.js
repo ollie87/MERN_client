@@ -4,7 +4,7 @@ import proyectoContext from '../../contexts/proyectos/proyectoContext';
 
 const ListadoTareas = () => {
   const proyectosContext = useContext(proyectoContext);
-  const { proyecto } = proyectosContext;
+  const { proyecto, eliminarProyecto } = proyectosContext;
 
   if (!proyecto) return <h2>Selecctiona un Proyecto</h2>;
 
@@ -15,6 +15,9 @@ const ListadoTareas = () => {
     { id: 3, nombre: 'Elegir Plataformas de pago', estado: false },
     { id: 4, nombre: 'Elegir Hosting', estado: true },
   ];
+  const onClickEliminar = () => {
+    eliminarProyecto(proyectoActual.id);
+  };
   return (
     <Fragment>
       <h2>Proyecto: {proyectoActual.nombre}</h2>
@@ -28,7 +31,7 @@ const ListadoTareas = () => {
           tareasProyecto.map(tarea => <Tarea tarea={tarea} key={tarea.id} />)
         )}
       </ul>
-      <button type="button" className="btn btn-eliminar">
+      <button type="button" className="btn btn-eliminar" onClick={onClickEliminar}>
         Eliminar Proyecto &times;
       </button>
     </Fragment>
