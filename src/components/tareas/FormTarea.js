@@ -8,9 +8,13 @@ const FormTarea = () => {
   if (!proyecto) return null;
 
   const [proyectoActual] = proyecto;
+
+  const onSubmit = e => {
+    e.preventDefault();
+  };
   return (
     <div className="formulario">
-      <form>
+      <form onSubmit={onSubmit}>
         <div className="contenedor-input">
           <input type="text" className="input-text" placeholder="Nombre Tarea" name="nombre" />
         </div>

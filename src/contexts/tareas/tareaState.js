@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { TAREAS_PROYECTO } from '../../types';
+import { AGREGAR_TAREA, TAREAS_PROYECTO } from '../../types';
 import tareaContext from './tareaContext';
 import TareaReducer from './tareaReducer';
 
@@ -31,8 +31,17 @@ const TareaState = props => {
     });
   };
 
+  const agregarTarea = tarea => {
+    dispatch({
+      type: AGREGAR_TAREA,
+      payload: tarea,
+    });
+  };
+
   return (
-    <tareaContext.Provider value={{ tareas: state.tareas, tareasproyecto: state.tareasproyecto, obtenerTareas }}>
+    <tareaContext.Provider
+      value={{ tareas: state.tareas, tareasproyecto: state.tareasproyecto, obtenerTareas, agregarTarea }}
+    >
       {props.children}
     </tareaContext.Provider>
   );
