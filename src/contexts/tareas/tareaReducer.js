@@ -1,4 +1,5 @@
-import { AGREGAR_TAREA, TAREAS_PROYECTO, VALIDAR_TAREA } from '../../types';
+import { act } from 'react-dom/test-utils';
+import { AGREGAR_TAREA, ELIMINAR_TAREA, TAREAS_PROYECTO, VALIDAR_TAREA } from '../../types';
 
 /* eslint import/no-anonymous-default-export: [2, {"allowArrowFunction": true}] */
 export default (state, action) => {
@@ -7,11 +8,13 @@ export default (state, action) => {
       return { ...state, tareasproyecto: state.tareas.filter(tarea => tarea.proyectoId === action.payload) };
 
     case AGREGAR_TAREA:
-      return { ...state, tareas: [...state.tareas, action.payload], errorTarea: false };
+      return { ...state, tareas: [action.payload, ...state.tareas], errorTarea: false };
 
     case VALIDAR_TAREA:
       return { ...state, errorTarea: true };
 
+    case ELIMINAR_TAREA:
+      return { ...state, tareas: state.tareas.filter(tarea => tarea.id !== action.payload) };
     default:
       return state;
   }
