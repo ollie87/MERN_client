@@ -9,7 +9,7 @@ const ListadoProyectos = () => {
 
   useEffect(() => {
     obtenerProyectos();
-  }, [obtenerProyectos]);
+  }, []);
 
   if (proyectos.length === 0) return <p>No hay proyectos, comienza creando uno.</p>;
 
