@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useReducer } from 'react';
 import {
   AGREGAR_PROYECTO,
