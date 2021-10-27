@@ -3,7 +3,7 @@ import {
     REGISTRO_ERROR,
     LOGIN_ERROR,
     OBTENER_USUARIO,
-    // LOGIN_EXITOSO,
+    LOGIN_EXITOSO,
     // CERRAR_SESION
 } from '../../types';
 
@@ -12,6 +12,7 @@ import {
 export default (state, action) => {
     switch(action.type) {
         case REGISTRO_EXITOSO:
+        case LOGIN_EXITOSO:
             localStorage.setItem('token', action.payload.token);
             return {
                 ...state,
@@ -19,11 +20,6 @@ export default (state, action) => {
                 mensaje: null
             }
         case REGISTRO_ERROR:
-            return {
-                ...state,
-                token: null,
-                mensaje: action.payload
-            }
         case LOGIN_ERROR:
                 localStorage.removeItem('token');
                 return {

@@ -8,8 +8,8 @@ import {
     REGISTRO_EXITOSO,
     REGISTRO_ERROR,
     OBTENER_USUARIO,
-    // LOGIN_EXITOSO,
     LOGIN_ERROR,
+    LOGIN_EXITOSO,
     // CERRAR_SESION
 } from '../../types';
 
@@ -67,6 +67,27 @@ const AuthState = props => {
         }
     }
 
+    const iniciarSesion = async datos => {
+        try {
+            const respuesta = await clienteAxios.post('api/auth', datos);
+            dispatch({
+                type: LOGIN_EXITOSO,
+                payload: respuesta.data
+            })
+            usuarioAutenticado()
+        } catch (error) {
+            console.log(error.response.data.msg);
+            const alerta = {
+                msg: error.response.data.msg,
+                categoria: 'alerta-error'
+            }
+            dispatch({
+                type: LOGIN_ERROR,
+                payload: alerta
+            })
+        }
+    }
+
     return (
         <authContext.Provider
             value={{
@@ -74,7 +95,8 @@ const AuthState = props => {
                 autenticado: state.autenticado,
                 usuario: state.usuario,
                 mensaje: state.mensaje,
-                registrarUsuario
+                registrarUsuario,
+                iniciarSesion
             }}
         > 
             {props.children}
