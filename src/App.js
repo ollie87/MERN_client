@@ -7,7 +7,14 @@ import ProyectoState from './contexts/proyectos/proyectoState';
 import TareaState from './contexts/tareas/tareaState';
 import AlertaState from './contexts/alertas/alertaState';
 import AuthState from './contexts/autenticacion/authState';
+import tokenAuth from './config/tokenAuth';
 
+// Revisar si tenemos un token
+const token = localStorage.getItem('token')
+
+if (token) {
+  tokenAuth(token);
+}
 
 function App() {
   console.log(process.env.REACT_APP_BACKEND_URL)
