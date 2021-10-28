@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import clienteAxios from '../../config/axios';
 import {
   AGREGAR_PROYECTO,
@@ -7,6 +7,7 @@ import {
   FORMULARIO_PROYECTO,
   OBTENER_PROYECTOS,
   PROYECTO_ACTUAL,
+  PROYECTO_ERROR,
   VALIDAR_FORMULARIO,
 } from '../../types';
 import proyectoContext from './proyectoContext';
@@ -19,6 +20,7 @@ const ProyectoState = props => {
     formulario: false,
     errorformulario: false,
     proyecto: null,
+    mensaje: null
   };
 
   const [state, dispatch] = useReducer(proyectoReducer, initialState);
@@ -34,7 +36,14 @@ const ProyectoState = props => {
       const resulado = await clienteAxios.get('/api/proyectos');
       dispatch({ type: OBTENER_PROYECTOS, payload: resulado.data.proyectos });
     } catch (error) {
-      console.log(error)
+      const alerta = {
+        msg: 'Hubo un error',
+        categoria: 'alerta-error'
+      }
+      dispatch({
+        type: PROYECTO_ERROR,
+        payload: alerta
+      })
     }
     
   };
@@ -47,7 +56,14 @@ const ProyectoState = props => {
         payload: resultado.data,
       });
     } catch (error) {
-      console.log(error)
+      const alerta = {
+        msg: 'Hubo un error',
+        categoria: 'alerta-error'
+      }
+      dispatch({
+        type: PROYECTO_ERROR,
+        payload: alerta
+      })
     }
   };
 
@@ -70,7 +86,14 @@ const ProyectoState = props => {
         payload: proyectoId,
       });
     } catch (error) {
-      console.log(error);
+      const alerta = {
+        msg: 'Hubo un error',
+        categoria: 'alerta-error'
+      }
+      dispatch({
+        type: PROYECTO_ERROR,
+        payload: alerta
+      })
     }
   };
 
@@ -81,6 +104,7 @@ const ProyectoState = props => {
         formulario: state.formulario,
         errorformulario: state.errorformulario,
         proyecto: state.proyecto,
+        mensaje: state.mensaje,
         mostrarFormulario,
         obtenerProyectos,
         agregarProyecto,
