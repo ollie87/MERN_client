@@ -13,11 +13,7 @@ import proyectoContext from './proyectoContext';
 import proyectoReducer from './proyectoReducer';
 
 const ProyectoState = props => {
-  const proyectos = [
-    { id: 1, nombre: 'Tienda Virtual' },
-    { id: 2, nombre: 'Intranet' },
-    { id: 3, nombre: 'Diseño sitio web' },
-  ];
+
   const initialState = {
     proyectos: [],
     formulario: false,
@@ -33,9 +29,15 @@ const ProyectoState = props => {
     });
   };
 
-  const obtenerProyectos = useCallback(() => {
-    dispatch({ type: OBTENER_PROYECTOS, payload: proyectos });
-  }, []);
+  const obtenerProyectos = async () => {
+    try {
+      const resulado = await clienteAxios.get('/api/proyectos');
+      dispatch({ type: OBTENER_PROYECTOS, payload: resulado.data.proyectos });
+    } catch (error) {
+      console.log(error)
+    }
+    
+  };
 
   const agregarProyecto = async proyecto => {
     try {
