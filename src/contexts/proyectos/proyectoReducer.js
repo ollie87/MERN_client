@@ -22,7 +22,7 @@ export default (state, action) => {
     case VALIDAR_FORMULARIO:
       return { ...state, errorformulario: true };
     case PROYECTO_ACTUAL:
-      return { ...state, proyecto: state.proyectos.filter(proyecto => proyecto.id === action.payload) };
+      return { ...state, proyecto: state.proyectos.filter(proyecto => proyecto._id === action.payload) };
     case ELIMINAR_PROYECTO:
       return {
         ...state,
