@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useReducer } from 'react';
+import clienteAxios from '../../config/axios';
 import {
   AGREGAR_PROYECTO,
   ELIMINAR_PROYECTO,
@@ -10,7 +11,7 @@ import {
 } from '../../types';
 import proyectoContext from './proyectoContext';
 import proyectoReducer from './proyectoReducer';
-import { v4 as uuidv4 } from 'uuid';
+
 const ProyectoState = props => {
   const proyectos = [
     { id: 1, nombre: 'Tienda Virtual' },
@@ -36,13 +37,16 @@ const ProyectoState = props => {
     dispatch({ type: OBTENER_PROYECTOS, payload: proyectos });
   }, []);
 
-  const agregarProyecto = proyecto => {
-    proyecto.id = uuidv4();
-
-    dispatch({
-      type: AGREGAR_PROYECTO,
-      payload: proyecto,
-    });
+  const agregarProyecto = async proyecto => {
+    try {
+      const resultado = await clienteAxios.post('/api/proyectos', proyecto);
+      dispatch({
+        type: AGREGAR_PROYECTO,
+        payload: resultado.data,
+      });
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   const mostrarError = () => {
