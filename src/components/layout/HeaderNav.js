@@ -9,6 +9,7 @@ const HeaderNav = () => {
 
    useEffect(() => {
     usuarioAutenticado();
+    // eslint-disable-next-line
   }, [])
  
   return (
