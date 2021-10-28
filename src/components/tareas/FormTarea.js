@@ -58,7 +58,7 @@ const FormTarea = () => {
       limpiarTarea();
     }
 
-    obtenerTareas(proyectoActual.id);
+    obtenerTareas(proyectoActual._id);
     guardarTarea({ nombre: '' });
   };
 

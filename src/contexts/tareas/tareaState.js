@@ -21,11 +21,17 @@ const TareaState = props => {
   };
   const [state, dispatch] = useReducer(TareaReducer, initialState);
 
-  const obtenerTareas = proyectoId => {
-    dispatch({
-      type: TAREAS_PROYECTO,
-      payload: proyectoId,
-    });
+  const obtenerTareas = async proyecto => {
+    try {
+      const resultado = await clienteAxios.get('/api/tareas', { params: { proyecto }});
+      dispatch({
+        type: TAREAS_PROYECTO,
+        payload: resultado.data.tareas
+      });
+    } catch (error) {
+      console.log(error)
+    }
+    
   };
 
   const agregarTarea = async tarea => {
